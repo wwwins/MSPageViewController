@@ -9,6 +9,11 @@
 #import "MSPageViewController.h"
 #import "MSPageViewController+Protected.h"
 
+@interface MSPageViewController ()
+
+@property (nonatomic) NSInteger pageIndex;
+
+@end
 @implementation MSPageViewController
 
 - (id)initWithTransitionStyle:(UIPageViewControllerTransitionStyle)style
@@ -67,6 +72,26 @@
     if (self.pageCount == 1) {
         self.view.userInteractionEnabled = NO;
     }
+}
+
+#pragma mark - page actions
+
+- (void)nextPage
+{
+  [self setViewControllers:@[[self viewControllerAtIndex:_pageIndex+1]]
+                 direction:UIPageViewControllerNavigationDirectionForward
+                  animated:YES
+                completion:nil];
+  
+}
+
+- (void)prevPage
+{
+  [self setViewControllers:@[[self viewControllerAtIndex:_pageIndex-1]]
+                 direction:UIPageViewControllerNavigationDirectionReverse
+                  animated:YES
+                completion:nil];
+  
 }
 
 #pragma mark - UIPageViewControllerDataSource

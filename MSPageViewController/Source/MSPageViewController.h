@@ -14,6 +14,9 @@
  */
 @interface MSPageViewController : UIPageViewController
 
+- (void)nextPage;
+- (void)prevPage;
+
 @end
 
 @protocol MSPageViewControllerChild <NSObject>
