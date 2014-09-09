@@ -41,7 +41,7 @@ Then in your ```MSPageViewController``` subclass you can override this method to
 }
 ```
 
-## others
+## Others:
 ```objc
 // stop swip scrolling
 [self swipScrollEnable:YES];
