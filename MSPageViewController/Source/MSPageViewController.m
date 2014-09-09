@@ -14,7 +14,10 @@
 @property (nonatomic) NSInteger pageIndex;
 
 @end
+
 @implementation MSPageViewController
+
+@synthesize showingPageIndicator = _showingPageIndicator;
 
 - (id)initWithTransitionStyle:(UIPageViewControllerTransitionStyle)style
         navigationOrientation:(UIPageViewControllerNavigationOrientation)navigationOrientation
@@ -23,6 +26,7 @@
                          navigationOrientation:navigationOrientation
                                        options:options])) {
         [self ms_setUp];
+      
     }
     
     return self;
@@ -39,7 +43,8 @@
 #pragma mark - Protected
 
 - (void)ms_setUp {
-    self.dataSource = self;
+  self.dataSource = self;
+  self.showingPageIndicator = YES;
 }
 
 - (NSArray *)pageIdentifiers {
@@ -54,7 +59,7 @@
 
 - (void)setUpViewController:(UIViewController<MSPageViewControllerChild> *)viewController
                     atIndex:(NSInteger)index {
-    
+  _pageIndex = index;
 }
 
 #pragma mark -
@@ -72,6 +77,17 @@
     if (self.pageCount == 1) {
         self.view.userInteractionEnabled = NO;
     }
+}
+
+#pragma mark - swip scrolling enable
+
+- (void)swipScrollEnable:(BOOL)enable
+{
+  for (UIScrollView *view in self.view.subviews) {
+    if ([view isKindOfClass:[UIScrollView class]]) {
+      view.scrollEnabled = enable;
+    }
+  }
 }
 
 #pragma mark - page actions
@@ -135,13 +151,19 @@
 }
 
 - (NSInteger)presentationCountForPageViewController:(MSPageViewController *)pageViewController {
+    if (!_showingPageIndicator)
+      return 0;
+  
     const BOOL shouldShowPageControl = (pageViewController.pageCount > 1);
     
     return (shouldShowPageControl) ? pageViewController.pageCount : 0;
 }
 
 - (NSInteger)presentationIndexForPageViewController:(UIPageViewController *)pageViewController {
-    return [pageViewController.viewControllers.lastObject pageIndex];
+  if (!_showingPageIndicator)
+    return 0;
+
+  return [pageViewController.viewControllers.lastObject pageIndex];
 }
 
 @end

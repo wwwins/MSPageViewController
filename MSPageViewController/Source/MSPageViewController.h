@@ -14,8 +14,11 @@
  */
 @interface MSPageViewController : UIPageViewController
 
+@property (nonatomic) BOOL showingPageIndicator;
+
 - (void)nextPage;
 - (void)prevPage;
+- (void)swipScrollEnable:(BOOL)enable;
 
 @end
 
