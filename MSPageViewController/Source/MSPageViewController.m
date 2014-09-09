@@ -44,7 +44,6 @@
 
 - (void)ms_setUp {
   self.dataSource = self;
-  self.showingPageIndicator = YES;
 }
 
 - (NSArray *)pageIdentifiers {
