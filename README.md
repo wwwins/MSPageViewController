@@ -41,6 +41,15 @@ Then in your ```MSPageViewController``` subclass you can override this method to
 }
 ```
 
+## others
+```objc
+// stop swip scrolling
+[self swipScrollEnable:YES];
+
+// hide page indicator
+[self setShowingPageIndicator:NO];
+```
+
 ## Instalation:
 - Using [Cocoapods](http://cocoapods.org/):
 
