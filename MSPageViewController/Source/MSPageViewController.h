@@ -18,6 +18,7 @@
 
 - (void)nextPage;
 - (void)prevPage;
+- (void)gotoPage:(NSInteger)pageIndex;
 - (void)swipScrollEnable:(BOOL)enable;
 
 @end

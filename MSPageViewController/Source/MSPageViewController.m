@@ -109,6 +109,15 @@
   
 }
 
+- (void)gotoPage:(NSInteger)pageIndex
+{
+  [self setViewControllers:@[[self viewControllerAtIndex:pageIndex]]
+                 direction:UIPageViewControllerNavigationDirectionForward
+                  animated:YES
+                completion:nil];
+  
+}
+
 #pragma mark - UIPageViewControllerDataSource
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController
